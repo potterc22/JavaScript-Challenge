@@ -110,8 +110,7 @@ select {
   animation: title 1.2s forwards linear;
 }
 
-.hero p {
-  font-size: 2rem;
+.hero h2 {
   opacity: 0;
   animation: subtitle 1.2s forwards linear;
   animation-delay: 1.2s;

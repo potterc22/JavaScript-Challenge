@@ -50,17 +50,34 @@ function runEnter() {
     // clear the table body, so we can return the filtered data
     tBody.html("")
 
-    // Create filtered table
-    // Loop through each filtered ufoSighting
-    filteredData.forEach((ufoSighting) => {
-        // append a row to the table body
-        var row =  tBody.append('tr');
-        // loop through each filtered result and append that value to the table
-        Object.entries(ufoSighting).forEach(([key, value]) => {
-            var cell = row.append("td");
-            cell.text(value);
+    if (inputValue === '') {
+        // Create Overall Table if no date is entered
+        // Loop through each ufoSighting
+        tableData.forEach((ufoSighting) => {
+            // append a row to the table body
+            var row =  tBody.append('tr');
+            // loop through each value in the object and append that value to the table
+            Object.entries(ufoSighting).forEach(([key, value]) => {
+                var cell = row.append("td");
+                cell.text(value);
+            })
         })
-    })
+    }
+
+    else {
+        // Create filtered table
+        // Loop through each filtered ufoSighting
+        filteredData.forEach((ufoSighting) => {
+            // append a row to the table body
+            var row =  tBody.append('tr');
+            // loop through each filtered result and append that value to the table
+            Object.entries(ufoSighting).forEach(([key, value]) => {
+                var cell = row.append("td");
+                cell.text(value);
+            })
+        })
+    }
+    
 
 
 

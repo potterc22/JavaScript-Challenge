@@ -49,7 +49,8 @@ function runEnter() {
 
     // clear the table body, so we can return the filtered data
     tBody.html("")
-
+    
+    // Create date filter
     if (inputValue === '') {
         // Create Overall Table if no date is entered
         // Loop through each ufoSighting
@@ -78,7 +79,4 @@ function runEnter() {
         })
     }
     
-
-
-
 }

@@ -123,10 +123,8 @@ function runReset() {
     tBody.html("")
     // reset to overall table
     createTable(tableData)
-    // clear datetime filter input
+    // clear form filters
+    document.getElementById('ufo-form').reset()
     
-    // clear city filter input
-
-    // cityElement.val('')
     console.log("Reset the Table")
 }

@@ -61,14 +61,6 @@ function runEnter() {
   
     console.log(stateValue);
 
-    // // Select the country element and get the raw HTML node
-    // var countryElement = d3.select("#country-form-input");
-  
-    // // Get the value property of the country element
-    // var countryValue = countryElement.property("value").toLowerCase().trim();
-  
-    // console.log(countryValue);
-
     // Select the shape element and get the raw HTML node
     var shapeElement = d3.select("#shape-form-input");
   
@@ -118,6 +110,25 @@ function runEnter() {
             }
         })
     }
+
+    // filter by datetime and shape
+    if ((dateValue != '') && (shapeValue != '')) {
+        var filteredData = tableData.filter(data => {
+            if ((data.datetime === dateValue) && (data.shape === shapeValue)) {
+                return data;
+            }
+        })
+    }
+
+    // filter by datetime, state and shape
+    if ((dateValue != '') && (stateValue != '') && (shapeValue != '')) {
+        var filteredData = tableData.filter(data => {
+            if ((data.datetime === dateValue) && (data.state === stateValue) && (data.shape === shapeValue)) {
+                return data;
+            }
+        })
+    }
+
 
     console.log(filteredData)
     createTable(filteredData)

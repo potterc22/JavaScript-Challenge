@@ -24,17 +24,12 @@ createTable(tableData)
 // Select the filter button
 var button = d3.select("#filter-button");
 
-// select the reset button
-var reset = d3.select('#reset-button')
-
 // Select the form
 var form = d3.select("#ufo-form");
 
 // Create event handlers 
 button.on("click", runEnter);
 form.on("submit",runEnter);
-reset.on("click", runReset)
-
 
 // Complete the event handler function for the form
 function runEnter() {
@@ -111,10 +106,31 @@ function runEnter() {
         var filteredData = tableData.filter(data => data.shape === shapeValue);
     }
 
+    // filter by both datetime and city
+    if ((dateValue != '') && (cityValue != '')) {
+        var filteredData = tableData.filter(data => {
+            if ((data.datetime === dateValue) && (data.city === cityValue)) {
+                return data;
+            }
+        })
+    }
+
+    // filter by datetime and state
+    if ((dateValue != '') && (stateValue != '')) {
+        var filteredData = tableData.filter(data => {
+            if ((data.datetime === dateValue) && (data.state === stateValue)) {
+                return data;
+            }
+        })
+    }
+
     console.log(filteredData)
     createTable(filteredData)
 }
 
+// select the reset button
+var reset = d3.select('#reset-button')
+reset.on("click", runReset)
 
 function runReset() {
     // Prevent the page from refreshing
@@ -125,6 +141,6 @@ function runReset() {
     createTable(tableData)
     // clear form filters
     document.getElementById('ufo-form').reset()
-    
+
     console.log("Reset the Table")
 }

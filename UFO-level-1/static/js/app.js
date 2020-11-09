@@ -129,6 +129,11 @@ function runEnter() {
         })
     }
 
+    
+    // create alert if no filter is entered
+    if ((dateValue == '') && (cityValue == '') && (stateValue == '') && (shapeValue == '')) {
+        alert('Please enter a filter')
+    }
 
     console.log(filteredData)
     createTable(filteredData)

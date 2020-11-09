@@ -61,13 +61,13 @@ function runEnter() {
   
     console.log(stateValue);
 
-    // Select the country element and get the raw HTML node
-    var countryElement = d3.select("#country-form-input");
+    // // Select the country element and get the raw HTML node
+    // var countryElement = d3.select("#country-form-input");
   
-    // Get the value property of the country element
-    var countryValue = countryElement.property("value").toLowerCase().trim();
+    // // Get the value property of the country element
+    // var countryValue = countryElement.property("value").toLowerCase().trim();
   
-    console.log(countryValue);
+    // console.log(countryValue);
 
     // Select the shape element and get the raw HTML node
     var shapeElement = d3.select("#shape-form-input");
@@ -96,11 +96,6 @@ function runEnter() {
         var filteredData = tableData.filter(data => data.state === stateValue);
     }
 
-    if (countryValue != '') {
-        // filter by country
-        var filteredData = tableData.filter(data => data.country === countryValue);
-    }
-
     if (shapeValue != '') {
         // filter by shape
         var filteredData = tableData.filter(data => data.shape === shapeValue);
@@ -127,6 +122,39 @@ function runEnter() {
     console.log(filteredData)
     createTable(filteredData)
 }
+
+
+d3.selectAll("#selDataset").on("change", countryFilter);
+
+// Filter table based on country dropdown selection
+function countryFilter() {
+    // Prevent the page from refreshing
+    d3.event.preventDefault();
+    // Use D3 to select the dropdown menu
+    var dropdownMenu = d3.select("#selDataset");
+    // Assign the value of the dropdown menu option to a variable
+    var dataset = dropdownMenu.property("value");
+
+    // clear the table body, so we can return the filtered data
+    tBody.html("")
+
+    // defualt blank dropdown option should display full dataset
+    if (dataset === 'default') {
+        var filteredData = tableData
+    }
+    // us dropdown option should display us sightings only
+    else if (dataset === 'us') {
+        var filteredData = tableData.filter(data => data.country == 'us');
+    }
+    // canada dropdown option should display canada sightings only
+    else if (dataset === 'canada') {
+        var filteredData = tableData.filter(data => data.country == 'ca');
+    }
+    console.log(filteredData)
+    createTable(filteredData)
+}
+    
+
 
 // select the reset button
 var reset = d3.select('#reset-button')

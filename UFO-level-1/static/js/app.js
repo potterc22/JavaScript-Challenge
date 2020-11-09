@@ -120,6 +120,24 @@ function runEnter() {
         })
     }
 
+    // filter by city and shape
+    if ((cityValue != '') && (shapeValue != '')) {
+        var filteredData = tableData.filter(data => {
+            if ((data.city === cityValue) && (data.shape === shapeValue)) {
+                return data;
+            }
+        })
+    }
+
+    // filter by state and shape
+    if ((stateValue != '') && (shapeValue != '')) {
+        var filteredData = tableData.filter(data => {
+            if ((data.state === stateValue) && (data.shape === shapeValue)) {
+                return data;
+            }
+        })
+    }
+
     // filter by datetime, state and shape
     if ((dateValue != '') && (stateValue != '') && (shapeValue != '')) {
         var filteredData = tableData.filter(data => {
@@ -129,7 +147,6 @@ function runEnter() {
         })
     }
 
-    
     // create alert if no filter is entered
     if ((dateValue == '') && (cityValue == '') && (stateValue == '') && (shapeValue == '')) {
         alert('Please enter a filter')
@@ -138,7 +155,6 @@ function runEnter() {
     console.log(filteredData)
     createTable(filteredData)
 }
-
 
 d3.selectAll("#selDataset").on("change", countryFilter);
 
@@ -170,8 +186,6 @@ function countryFilter() {
     createTable(filteredData)
 }
     
-
-
 // select the reset button
 var reset = d3.select('#reset-button')
 reset.on("click", runReset)

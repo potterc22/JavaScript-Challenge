@@ -50,13 +50,37 @@ function runEnter() {
   
     console.log(dateValue);
     
-    // Select the date element and get the raw HTML node
+    // Select the city element and get the raw HTML node
     var cityElement = d3.select("#city-form-input");
   
-    // Get the value property of the date element
+    // Get the value property of the city element
     var cityValue = cityElement.property("value").toLowerCase().trim();
   
     console.log(cityValue);
+
+    // Select the state element and get the raw HTML node
+    var stateElement = d3.select("#state-form-input");
+  
+    // Get the value property of the state element
+    var stateValue = stateElement.property("value").toLowerCase().trim();
+  
+    console.log(stateValue);
+
+    // Select the country element and get the raw HTML node
+    var countryElement = d3.select("#country-form-input");
+  
+    // Get the value property of the country element
+    var countryValue = countryElement.property("value").toLowerCase().trim();
+  
+    console.log(countryValue);
+
+    // Select the shape element and get the raw HTML node
+    var shapeElement = d3.select("#shape-form-input");
+  
+    // Get the value property of the shape element
+    var shapeValue = shapeElement.property("value").toLowerCase().trim();
+  
+    console.log(shapeValue);
 
     // clear the table body, so we can return the filtered data
     tBody.html("")
@@ -70,6 +94,21 @@ function runEnter() {
     if (cityValue != '') {
         // filter by city
         var filteredData = tableData.filter(data => data.city === cityValue);
+    }
+
+    if (stateValue != '') {
+        // filter by state
+        var filteredData = tableData.filter(data => data.state === stateValue);
+    }
+
+    if (countryValue != '') {
+        // filter by country
+        var filteredData = tableData.filter(data => data.country === countryValue);
+    }
+
+    if (shapeValue != '') {
+        // filter by shape
+        var filteredData = tableData.filter(data => data.shape === shapeValue);
     }
 
     console.log(filteredData)

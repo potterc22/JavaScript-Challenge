@@ -147,6 +147,15 @@ function runEnter() {
         })
     }
 
+    // filter by datetime, city, state and shape
+    if ((dateValue != '') && (cityValue != '') && (stateValue != '') && (shapeValue != '')) {
+        var filteredData = tableData.filter(data => {
+            if ((data.datetime === dateValue) && (data.city === cityValue) && (data.state === stateValue) && (data.shape === shapeValue)) {
+                return data;
+            }
+        })
+    }
+
     // create alert if no filter is entered
     if ((dateValue == '') && (cityValue == '') && (stateValue == '') && (shapeValue == '')) {
         alert('Please enter a filter')
